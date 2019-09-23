@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 
@@ -8,8 +8,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./search.component.scss"]
 })
 export class SearchComponent implements OnInit {
-  // @Input() term?: string;
-  term: string = "";
+  @Input() term?: string = "";
   submitted = false;
   constructor(private router: Router) {}
 

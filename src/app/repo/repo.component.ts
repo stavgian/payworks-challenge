@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { GithubClientService } from "../github-client.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Repo } from "../models/repo";
 
 @Component({
@@ -16,7 +16,8 @@ export class RepoComponent implements OnInit {
   branches: any;
   constructor(
     private github: GithubClientService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.queryParams = this.activeRoute.snapshot.queryParams;
     this.routeParams = this.activeRoute.snapshot.params;
@@ -25,11 +26,14 @@ export class RepoComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.github
-        .getBranches(this.routeParams.orgName, this.routeParams.repoName)
-        .subscribe(data => {
-          console.log(data);
-          this.branches = data;
-        });
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    };
+    this.github
+      .getBranches(this.routeParams.orgName, this.routeParams.repoName)
+      .subscribe(data => {
+        console.log(data);
+        this.branches = data;
+      });
   }
 }
