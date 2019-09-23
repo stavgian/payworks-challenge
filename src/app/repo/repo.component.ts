@@ -26,9 +26,9 @@ export class RepoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => {
-      return false;
-    };
+    // this.router.routeReuseStrategy.shouldReuseRoute = () => {
+    //   return false;
+    // };
     this.github
       .getBranches(this.routeParams.orgName, this.routeParams.repoName)
       .subscribe(data => {
