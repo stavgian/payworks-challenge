@@ -1,0 +1,7 @@
+<div class="relative mr-6 my-2">
+  <form #s="ngForm" (ngSubmit)="onSubmit(s)" novalidate>
+    <input name="organization" id="organization-name" type="text" class="bg-purple-white shadow rounded border-0 p-3"
+           placeholder="Search by name..." ngModel required>
+    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded">Submit</button>
+  </form>
+</div>

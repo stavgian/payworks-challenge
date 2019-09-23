@@ -1,0 +1,4 @@
+<ul>
+  <li *ngFor="let item of repoList; let i = index">
+    <a href='/search/{{organizationName}}/{{item.name}}'>Branches</a> {{i}} {{item.name}} </li>
+</ul>
