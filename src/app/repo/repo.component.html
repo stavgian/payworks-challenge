@@ -1,9 +1,19 @@
-<div class="flex flex-row flex-wrap -mx-2">
-  <div class="w-full m-1">
-    <h1>
-      Branches of <strong>{{ orgName }}/{{ repoName }}</strong>
-    </h1>
+<div class="flex">
+  <div class="m-auto">
+    <h2 class="title text-1xl">
+      Branches of: <strong>{{ orgName }} / {{ repoName }}</strong>
+    </h2>
   </div>
+</div>
+<div class="flex">
+  <div class="m-auto">
+    <h4 class="title text-lg">
+      <a href="/search/{{ orgName }}">back to {{ orgName }} repo </a>
+    </h4>
+  </div>
+</div>
+
+<div class="flex flex-row flex-wrap -mx-2">
   <div class="w-full m-1" *ngFor="let item of branches; let i = index">
     <div class="relative bg-white rounded border">
       <div class="p-5 ">

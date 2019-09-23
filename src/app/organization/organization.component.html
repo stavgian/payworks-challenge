@@ -1,25 +1,50 @@
+<div class="flex">
+  <div class="m-auto">
+    <h2 class="title text-1xl">
+      Resuls for: <strong>{{ organizationName }}</strong>
+    </h2>
+  </div>
+</div>
+<div class="flex">
+  <div class="m-auto">
+    <h4 class="title text-l">
+      <a href="/search">back to search </a>
+    </h4>
+  </div>
+</div>
+<div class="flex">
+  <div class="m-auto">
+    <a *ngIf="queryParams.sortBy !== 'forks'" href="/search/{{ organizationName }}?sortBy=forks">Sort By Forks</a>
+    <a *ngIf="queryParams.sortBy === 'forks'" href="/search/{{ organizationName }}">Sort By Stars</a>
+  </div>
+</div>
+<div class="flex">
+  <div class="m-auto">
+    <form action="#">
+      <div class="max-w-sm mx-auto p-1 pr-0 flex items-center">
+        <select (change)="onLanguageSelect($event.target.value)" [(ngModel)]="languageFilter" name="languageFilter" id="filterLang">
+          <option value="">All</option>
+          <option *ngFor="let lang of languages"> {{ lang }}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+</div>
 <div class="flex flex-row flex-wrap -mx-2">
-  <div class="w-full m-1" *ngFor="let item of repoList; let i = index">
+  <div class="w-full m-1" *ngFor="let item of filteredRepoList; let i = index">
     <div class="relative bg-white rounded border">
       <div class="p-5 ">
         <h3 class="text-lg font-bold">
-          <a class="stretched-link" href="#" title="Card 1">
+          <a class="stretched-link" href="/search/{{ organizationName }}/{{ item.name }}">
             {{ item.name }}
           </a>
         </h3>
-        <time class="block mb-2 text-sm text-gray-600" datetime="2019-01-01"
-          >Stars: {{ item.stargazers_count }}</time
-        >
+        <span class="block mb-2 text-sm text-gray-600">Stars: {{ item.stargazers_count }} - Forks : {{ item.forks_count }} - Language: {{ item.language }}</span>
         <p>
           {{ item.description }}
         </p>
-        <a class="btn btn-blue">View Branches</a>
         <div class="mt-8 mb-3">
-          <a
-            href="/search/{{ organizationName }}/{{ item.name }}"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded"
-            >View Branches</a
-          >
+          <a href="/search/{{ organizationName }}/{{ item.name }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded">View Branches</a>
         </div>
       </div>
     </div>
