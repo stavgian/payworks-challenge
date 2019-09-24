@@ -34,7 +34,6 @@ export class OrganizationComponent implements OnInit {
       this.languages = this.getLanguagesFromResult(data);
 
       this.sortResult();
-
       console.log(data);
       console.log("langs", this.languages);
     });

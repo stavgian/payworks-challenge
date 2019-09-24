@@ -5,6 +5,15 @@
     </h2>
   </div>
 </div>
+
+<div class="flex" *ngIf="!filteredRepoList">
+  <div class="m-auto">
+    <h4 class="title text-l">
+      Cannot find Organization
+    </h4>
+  </div>
+</div>
+
 <div class="flex">
   <div class="m-auto">
     <h4 class="title text-l">
@@ -12,25 +21,29 @@
     </h4>
   </div>
 </div>
-<div class="flex">
-  <div class="m-auto">
-    <a *ngIf="queryParams.sortBy !== 'forks'" href="/search/{{ organizationName }}?sortBy=forks">Sort By Forks</a>
-    <a *ngIf="queryParams.sortBy === 'forks'" href="/search/{{ organizationName }}">Sort By Stars</a>
+
+<div *ngIf="filteredRepoList">
+  <div class="flex">
+    <div class="m-auto">
+      <a *ngIf="queryParams.sortBy !== 'forks'" href="/search/{{ organizationName }}?sortBy=forks">Sort By Forks</a>
+      <a *ngIf="queryParams.sortBy === 'forks'" href="/search/{{ organizationName }}">Sort By Stars</a>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="m-auto">
+      <form action="#">
+        <div class="max-w-sm mx-auto p-1 pr-0 flex items-center">
+          <select (change)="onLanguageSelect($event.target.value)" [(ngModel)]="languageFilter" name="languageFilter" id="filterLang">
+            <option value="">All</option>
+            <option *ngFor="let lang of languages"> {{ lang }}</option>
+          </select>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
-<div class="flex">
-  <div class="m-auto">
-    <form action="#">
-      <div class="max-w-sm mx-auto p-1 pr-0 flex items-center">
-        <select (change)="onLanguageSelect($event.target.value)" [(ngModel)]="languageFilter" name="languageFilter" id="filterLang">
-          <option value="">All</option>
-          <option *ngFor="let lang of languages"> {{ lang }}</option>
-        </select>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="flex flex-row flex-wrap -mx-2">
+
+<div class="flex flex-row flex-wrap -mx-2" *ngIf="filteredRepoList">
   <div class="w-full m-1" *ngFor="let item of filteredRepoList; let i = index">
     <div class="relative bg-white rounded border">
       <div class="p-5 ">
