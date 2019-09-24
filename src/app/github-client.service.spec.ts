@@ -1,10 +1,8 @@
 import { TestBed, getTestBed } from "@angular/core/testing";
-import {
-  HttpClientTestingModule,
-  HttpTestingController
-} from "@angular/common/http/testing";
+import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 
 import { GithubClientService } from "./github-client.service";
+import { Repo } from "./models/repo";
 
 describe("GithubClientService", () => {
   let injector: TestBed;
@@ -28,10 +26,12 @@ describe("GithubClientService", () => {
   describe("#getRepos", () => {
     it("should return an Observable<Repo[]>", () => {
       const testOrganisation = "payworks";
-      const dummyResponseData = [
+      const dummyResponseData: [Repo] = [
         {
           name: "MPBSignatureViewController",
-          stargazers_count: 5
+          stargazers_count: 5,
+          forks_count: 5,
+          language: "Javascript"
         }
       ];
       service.getRepos(testOrganisation).subscribe(repos => {

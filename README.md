@@ -1,6 +1,16 @@
 # GithubRepos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.2.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.2. The web app communicates with the Github API. It lists an organization projects. 
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/941f6ed7-16b4-45f5-85a6-e756a2d29a4b/deploy-status)](https://app.netlify.com/sites/stavgian-github-search/deploys)
+
+# Features
+- Search organization
+- Keeps the state in the url
+- filter by language used in repo
+- Sorting bu stars or forks
+- Routing state and share url possible
+- Responsive (tailwind)
 
 ## Development server
 
@@ -21,7 +31,3 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
